@@ -16,3 +16,6 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+hex1, hex2, hex3 = mac.split(':')
+#print(f'{hex1:b}{hex2:b}{hex3:b}')
+print(f'{int(hex1, 16):b}{int(hex2, 16):b}{int(hex3, 16):b}')
