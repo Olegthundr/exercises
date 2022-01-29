@@ -30,3 +30,16 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+subnet = input('Введите IP-сеть в формате subnet/mask: ')
+oct1, oct2, oct3, oct4 = subnet.split('.')
+oct4, mask = oct4.split('/')
+bmask = '1' * int(mask) + '0' * (32 - int(mask))
+print(f'''Network:
+{int(oct1):<10}{int(oct2):<10}{int(oct3):<10}{int(oct4):<10}
+{int(oct1):08b}  {int(oct2):08b}  {int(oct3):08b}  {int(oct4):08b}
+
+Mask:
+/{mask}
+{int(bmask[0:8], 2):<10}{int(bmask[8:16], 2):<10}{int(bmask[16:24], 2):<10}{int(bmask[24:32], 2):<10}
+{int(bmask[0:8]):08}  {int(bmask[8:16]):08}  {int(bmask[16:24]):08}  {int(bmask[24:32]):08}
+''')

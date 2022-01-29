@@ -45,7 +45,26 @@ bin_ip = "00001010000000010000000111000011"
 А адрес сети будет первых 28 символов из bin_ip + 0000 (4 потому что всего
 в адресе может быть 32 бита, а 32 - 28 = 4)
 00001010000000010000000111000000
-
+00001010.00000000.01010000.11000000
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+subnet = input('Введите IP-сеть в формате subnet/mask: ')
+oct1, oct2, oct3, oct4 = subnet.split('.')
+oct4, mask = oct4.split('/')
+bin1 = bin(int(oct1)).replace('0b','')
+bin2 = bin(int(oct2)).replace('0b','')
+bin3 = bin(int(oct3)).replace('0b','')
+bin4 = bin(int(oct4)).replace('0b','')
+bin_ip = '0' * (8 - len(bin1)) + bin1 + '0' * (8 - len(bin2)) + bin2 + '0' * (8 - len(bin3)) + bin3 + '0' * (8 - len(bin4)) + bin4
+true_subnet = (bin_ip[0:int(mask)] + '0' * (32 - int(mask)))
+bmask = '1' * int(mask) + '0' * (32 - int(mask))
+print(f'''Network:
+{int(true_subnet[0:8], 2):<10}{int(true_subnet[8:16], 2):<10}{int(true_subnet[16:24], 2):<10}{int(true_subnet[24:32], 2):<10}
+{int(true_subnet[0:8]):08}  {int(true_subnet[8:16]):08}  {int(true_subnet[16:24]):08}  {int(true_subnet[24:32]):08}
+
+Mask:
+/{mask}
+{int(bmask[0:8], 2):<10}{int(bmask[8:16], 2):<10}{int(bmask[16:24], 2):<10}{int(bmask[24:32], 2):<10}
+{int(bmask[0:8]):08}  {int(bmask[8:16]):08}  {int(bmask[16:24]):08}  {int(bmask[24:32]):08}
+''')
