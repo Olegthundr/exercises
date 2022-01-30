@@ -67,8 +67,8 @@ modes = {
 }
 iface = input('Введите тип и номер интерфейса: ')
 vlan = input('Введите номер влан(ов): ')
-modes['access'][1] = "switchport access vlan " + str(vlan)
-modes['trunk'][2] = "switchport trunk allowed vlan " + str(vlan)
+#modes['access'][1] = "switchport access vlan " + str(vlan)
+#modes['trunk'][2] = "switchport trunk allowed vlan " + str(vlan)
 
 print(f'''interface {iface}''')
-print('{}'.format('\n'.join(modes[int_mode])))
+print('\n'.join(modes[int_mode]).format(vlan))
